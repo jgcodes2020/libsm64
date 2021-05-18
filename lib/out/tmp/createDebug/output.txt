@@ -1,0 +1,4 @@
+See file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/createDebug/output.txt for all output for createDebug.
+archiving lib.lib successful.
+
+Finished createDebug, see full log file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/createDebug/output.txt.

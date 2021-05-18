@@ -1,0 +1,8 @@
+/DEBUG
+/OUT:C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\exe\test\libTest.exe
+/NOLOGO
+"/LIBPATH:C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\lib\x64"
+"/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\um\x64"
+"/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\ucrt\x64"
+C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\obj\test\4qjcdedox8pxjhj7yths6vymt\hello_test.obj
+C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\obj\main\debug\8i0gt4n057w8tszd80p1w5eia\hello.obj

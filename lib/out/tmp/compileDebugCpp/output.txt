@@ -1,0 +1,5 @@
+See file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/compileDebugCpp/output.txt for all output for compileDebugCpp.
+compiling hello.cpp successful.
+hello.cpp
+
+Finished compileDebugCpp, see full log file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/compileDebugCpp/output.txt.
