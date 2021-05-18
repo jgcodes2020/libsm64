@@ -1,7 +1,7 @@
 # libsm64
 A project for interfacing with [Wafel](https://github.com/branpk/wafel)'s internal DLLs and doing SM64 stuff.
-Currently, it depends on closed-source software (libsm64) which derives from open-source software 
-([the SM64 Decomp](https://github.com/n64decomp/sm64)), so all rights are reserved until further notice.
+Currently, it depends on closed-source software (libsm64, [the SM64 Decomp](https://github.com/n64decomp/sm64), 
+so all rights are reserved until further notice.
 
 # Functionality
 libsm64 provides:
