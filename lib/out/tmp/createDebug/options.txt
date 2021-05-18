@@ -1,3 +1,0 @@
-/OUT:C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\lib\main\debug\lib.lib
-/NOLOGO
-C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\obj\main\debug\8i0gt4n057w8tszd80p1w5eia\hello.obj

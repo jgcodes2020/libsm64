@@ -1,5 +1,0 @@
-See file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/linkTest/output.txt for all output for linkTest.
-linking libTest.exe successful.
-   Creating library C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\exe\test\libTest.lib and object C:\Users\jacky\Projects\libsm64-gradlecpp\lib\out\exe\test\libTest.exp
-
-Finished linkTest, see full log file:///C:/Users/jacky/Projects/libsm64-gradlecpp/lib/out/tmp/linkTest/output.txt.
