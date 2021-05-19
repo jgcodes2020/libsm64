@@ -21,6 +21,10 @@ library {
 }
 
 model {
+  /*
+   * Toolchain configurations:
+   * - use C++17
+   */
   toolChains {
     gcc(Gcc) {
       eachPlatform {

@@ -7,7 +7,7 @@
 
 #include <windows.h>
 
-#include "libsm64/libsm64.h"
+#include "libsm64_utils/sm64.hpp"
 
 using std::string, std::array, std::runtime_error;
 //A function that takes nothing and returns nothing.
