@@ -5,6 +5,9 @@
  * For more details take a look at the Building C++ applications and libraries chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.0.2/userguide/building_cpp_projects.html
  */
+import java.io.*;
+import java.nio.*;
+import java.nio.file.*;
 
 plugins {
   // Apply the cpp-library plugin to add support for building C++ libraries
@@ -20,10 +23,33 @@ library {
   linkage = [Linkage.STATIC]
 }
 
+def findExecutableOnPath(String name) {
+  for (String dirname : System.getenv("PATH").split(File.pathSeparator)) {
+    File file = new File(dirname, name);
+    if (file.isFile() && file.canExecute()) {
+      return file.getAbsoluteFile().toPath();
+    }
+  }
+  return null;
+}
+
+//Compilation database generator files
+
+File ccgenCompilers = new File("ccgen/compilers.txt")
+ccgenCompilers.getParentFile().mkdirs()
+ccgenCompilers.createNewFile();
+ccgenCompilers.write("");
+
+File ccgenTasks = new File("ccgen/tasks.txt")
+ccgenTasks.getParentFile().mkdirs()
+ccgenTasks.createNewFile();
+ccgenTasks.write("");
+
 model {
   /*
    * Toolchain configurations:
    * - use C++17
+   * - If toolchain exposes executable, log it to ccgen/compilers.txt
    */
   toolChains {
     gcc(Gcc) {
@@ -31,6 +57,14 @@ model {
         cppCompiler.withArguments { args ->
           args << "-std=c++17"
         }
+        def exe = cppCompiler.getExecutable() + ".exe";
+        def exePath = Path.of(exe);
+        if (!Files.exists(exePath.toAbsolutePath())) {
+          exePath = findExecutableOnPath(exe);
+        }
+        ccgenCompilers.append(
+          "compiler ${platform.getOperatingSystem().getName()} ${platform.getArchitecture().getName()} | ${exePath}\n"
+        )
       }
     }
     clang(Clang) {
@@ -38,6 +72,14 @@ model {
         cppCompiler.withArguments { args ->
           args << "-std=c++17"
         }
+        def exe = cppCompiler.getExecutable() + ".exe";
+        def exePath = Path.of(exe);
+        if (!Files.exists(exePath.toAbsolutePath())) {
+          exePath = findExecutableOnPath(exe);
+        }
+        ccgenCompilers.append(
+          "compiler ${platform.getOperatingSystem().getName()} ${platform.getArchitecture().getName()} | ${exePath}\n"
+        )
       }
     }
     msvc(VisualCpp) {
@@ -50,16 +92,27 @@ model {
   }
 }
 
-unitTest {
-  source(src -> {
-    src.from(file("src/test/cpp"))
-  })
-}
-
 def testCopyTask = tasks.register("copyTestResources", Copy) {
   from("src/test/resources")
   into("build/test-results/test/res")
 }
 tasks.withType(RunTestExecutable).configureEach {
   dependsOn testCopyTask
+}
+
+tasks.withType(CppCompile).configureEach {
+  doLast {
+    // Log task name, output dir and source files
+    ccgenTasks.append("task ${name} | ${objectFileDir.get()} | ${source.getFiles()} \n")
+  }
+}
+
+def genCCTask = tasks.register("genCompileCommands", Exec) {
+  workingDir project.rootDir
+  commandLine "python3", "ccgen.py"
+
+  mustRunAfter tasks.withType(CppCompile)
+}
+tasks.named("build") {
+  dependsOn genCCTask
 }

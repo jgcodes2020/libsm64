@@ -1,6 +1,5 @@
 #include <cstdint>
 
-#include <iostream>
 #include <string>
 #include <array>
 #include <stdexcept>
@@ -12,7 +11,7 @@
 using std::string, std::array, std::runtime_error;
 //A function that takes nothing and returns nothing.
 //Equivalent to java.lang.Runnable, hence the name.
-typedef void (*runnable_fn)(void);
+typedef void (*runnable_fn)();
 // These look much cleaner with hex numbers
 const array<array<libsm64::sm64::mem_region, 2>, 2> save_sections {
   // US Version
@@ -30,7 +29,7 @@ const array<array<libsm64::sm64::mem_region, 2>, 2> save_sections {
 libsm64::sm64::sm64(string path, libsm64::sm64::version version) {
   _version = version;
   _lib = LoadLibraryA(path.c_str());
-  if (_lib == NULL) {
+  if (_lib == nullptr) {
     auto error = libsm64::shared_lib_error("Could not load SM64");
     error.error_code = GetLastError();
     throw error;

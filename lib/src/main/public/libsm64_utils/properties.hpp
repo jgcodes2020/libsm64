@@ -1,3 +1,13 @@
+/**
+ * @file movie.hpp
+ * @author jgcodes2020
+ * @brief Contains a simple computed-properties framework.
+ * @version 0.1
+ * @date 2021-05-19
+ *
+ * @copyright Copyright (c) 2021
+ *
+ */
 #ifndef __LIBSM64_PROPERTIES_HPP
 #define __LIBSM64_PROPERTIES_HPP
 

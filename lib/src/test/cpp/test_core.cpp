@@ -12,8 +12,8 @@
 #include <utility>
 #include <typeinfo>
 
-#include "libsm64/libsm64.h"
-#include "libtest.h"
+#include "libsm64_utils/sm64.hpp"
+#include "libtest.hpp"
 
 using std::string, std::cout, std::clog, std::flush, std::pair, std::vector;
 
@@ -61,11 +61,11 @@ int main() {
           }
         }
       }
-      clog << "the bomb clip tas is " << a_press_frames.size() << "xA; presses on frames";
+      clog << "the bomb clip tas is " << a_press_frames.size() << "xA; presses on frames ";
       for (auto& press: a_press_frames) {
         clog << press << ", ";
       }
-      clog << "\b \b\b \n";
+      clog << "\b\b  \n";
       LIBTEST_ASSERT(a_press_frames.size() == 11);
     })
   });

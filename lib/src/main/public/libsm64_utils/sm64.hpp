@@ -1,7 +1,7 @@
 /**
  * @file sm64.hpp
- * @author your name (you@domain.com)
- * @brief Contains utilities to load and 
+ * @author jgcodes2020
+ * @brief Contains utilities to load and access the libsm64 DLL by bad_boot
  * @version 0.1
  * @date 2021-05-18
  * 
@@ -185,18 +185,6 @@ namespace libsm64 {
       set_input(input.m_buttons, input.m_stick_x, input.m_stick_y);
     }
     #endif
-
-    /**
-     * @brief Copies object behaviour from one slot to another.
-     * 
-     * @param src the object to copy from
-     * @param dst the object to copy to
-     */
-    void copy_object(uint16_t src, uint16_t dst) {
-      uint8_t* const src_ptr = locate<uint8_t>("gObjectPool", (src * 1392) + 160);
-      uint8_t* const dst_ptr = locate<uint8_t>("gObjectPool", (dst * 1392) + 160);
-      memmove(dst_ptr, src_ptr, 1232);
-    }
   };
 }
 
