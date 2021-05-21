@@ -13,9 +13,18 @@ libsm64 provides:
 This readme will be updated later when new functionality gets added.
 
 # Building
+
+## Requirements
+- `python` 3.8+ (may work with earlier versions)
+- `java` 8+
+
 To build the project, simply clone the Git repository and run:
 
 - `gradlew build` on Windows
 - ~~`./gradlew build` on Linux~~ (Linux support coming as soon as bad_boot gets around to supporting it)
 
 The resulting build files can be found in `lib/build/lib/main/debug`. Cheers!
+
+# Notes
+- I tried to add `clangd` support, but it's broken. If you want to try to fix it yourself run `gradlew rebuild`.
+  The relevant code is in `lib/build.gradle` and `ccgen.py`.

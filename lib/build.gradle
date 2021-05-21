@@ -38,12 +38,11 @@ def findExecutableOnPath(String name) {
 File ccgenCompilers = new File("ccgen/compilers.txt")
 ccgenCompilers.getParentFile().mkdirs()
 ccgenCompilers.createNewFile();
-ccgenCompilers.write("");
 
 File ccgenTasks = new File("ccgen/tasks.txt")
 ccgenTasks.getParentFile().mkdirs()
 ccgenTasks.createNewFile();
-ccgenTasks.write("");
+
 
 model {
   /*
@@ -113,6 +112,16 @@ def genCCTask = tasks.register("genCompileCommands", Exec) {
 
   mustRunAfter tasks.withType(CppCompile)
 }
-tasks.named("build") {
+def cleanTask = tasks.named("clean")
+def buildTask = tasks.named("build") {
   dependsOn genCCTask
+  mustRunAfter cleanTask
+}
+
+tasks.register("rebuild", DefaultTask) {
+  doFirst {
+    ccgenCompilers.write("");
+    ccgenTasks.write("");
+  }
+  dependsOn cleanTask, buildTask
 }

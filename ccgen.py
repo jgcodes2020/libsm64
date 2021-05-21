@@ -8,10 +8,10 @@ def parse_task(t):
     task_name = sections[0][5:]
     task_options = []
     with open("lib/build/tmp/{}/options.txt".format(task_name)) as f:
-        task_options = [o.strip() for o in f.readlines()]
+        task_options = [o.strip().replace("\\\\", "\\").replace("\"", "") for o in f.readlines()]
 
     return {
-        "source": [f.strip() for f in sections[2][1:-1].split(", ")],
+        "source": [f.replace("]", "") for f in sections[2][1:-2].split(", ")],
         "task": task_name,
         "output": sections[1],
         "options": task_options
@@ -55,7 +55,7 @@ for (compiler, task) in itertools.product(compilers, tasks):
         obj_file = Path(src).stem + ".obj"
         outfile = Path(outfile_mapping[obj_file]).joinpath(obj_file)
 
-        command.extend(["-o", str(outfile)])
+        command.extend(["-o", str(outfile), src])
 
         export.append({
             "file": src,

@@ -5,3 +5,5 @@
 build
 
 ccgen
+
+compile_commands.json
