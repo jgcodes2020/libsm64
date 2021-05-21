@@ -76,8 +76,8 @@ namespace libsm64 {
     }
 
     /**
-     *
-     * @param that
+     * Copy behaviour of this object to another object.
+     * @param that another object.
      */
     void copy_bhv(g_object that) {
       uint8_t* const src_ptr = m_game.locate<uint8_t>("gObjectPool", (this->m_slot * 1392) + 160);
@@ -103,6 +103,71 @@ namespace libsm64 {
       m_yaw_2_ptr(m_game.locate<uint16_t>("gObjectPool", (slot * 1392L) + 292)) {
 
     }
+
+    /**
+     * @brief Property to the bully's X position.
+     */
+    property<float> x = property<float>(
+      [this]() {
+        return *(this->m_x_ptr);
+      },
+      [this](float n) {
+        return *(this->m_x_ptr) = n;
+      });
+
+    /**
+     * @brief Property to the bully's Y position.
+     */
+    property<float> y = property<float>(
+      [this]() {
+        return *(this->m_y_ptr);
+      },
+      [this](float n) {
+        return *(this->m_y_ptr) = n;
+      });
+
+    /**
+     * @brief Property to the bully's Z position.
+     */
+    property<float> z = property<float>(
+      [this]() {
+        return *(this->m_z_ptr);
+      },
+      [this](float n) {
+        return *(this->m_z_ptr) = n;
+      });
+
+    /**
+     * @brief Property to the bully's H speed.
+     */
+    property<float> h_speed = property<float>(
+      [this]() {
+        return *(this->m_h_speed_ptr);
+      },
+      [this](float n) {
+        return *(this->m_h_speed_ptr) = n;
+      });
+    /**
+     * @brief Property to the bully's 1st yaw value.
+     */
+    property<uint16_t> yaw_1 = property<uint16_t>(
+      [this]() {
+        return *(this->m_yaw_1_ptr);
+      },
+      [this](float n) {
+        return *(this->m_yaw_1_ptr) = n;
+      });
+
+    /**
+     * @brief Property to the bully's 2nd yaw value.
+     */
+    property<uint16_t> yaw_1 = property<uint16_t>(
+      [this]() {
+        return *(this->m_yaw_1_ptr);
+      },
+      [this](float n) {
+        return *(this->m_yaw_1_ptr) = n;
+      });
   };
 }
 #endif
